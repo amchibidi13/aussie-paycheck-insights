@@ -50,8 +50,41 @@ export const taxYears: Record<string, TaxYear> = {
     ],
     medicareLevy: 0.02,
     superRate: 0.115
+  },
+  "2025-26": {
+    year: "2025-26",
+    brackets: [
+      { min: 0, max: 18200, baseAmount: 0, rate: 0 },
+      { min: 18201, max: 45000, baseAmount: 0, rate: 0.16 },
+      { min: 45001, max: 135000, baseAmount: 4294, rate: 0.30 },
+      { min: 135001, max: 190000, baseAmount: 31094, rate: 0.37 },
+      { min: 190001, max: null, baseAmount: 51424, rate: 0.45 }
+    ],
+    medicareLevy: 0.02,
+    superRate: 0.12
   }
 };
+
+// Function to add a new tax year
+export function addTaxYear(yearKey: string, taxYear: TaxYear) {
+  if (taxYears[yearKey]) {
+    throw new Error(`Tax year ${yearKey} already exists`);
+  }
+  
+  taxYears[yearKey] = taxYear;
+}
+
+// Function to update an existing tax year or specific parts of it
+export function updateTaxYear(yearKey: string, updates: Partial<TaxYear>) {
+  if (!taxYears[yearKey]) {
+    throw new Error(`Tax year ${yearKey} not found`);
+  }
+  
+  taxYears[yearKey] = {
+    ...taxYears[yearKey],
+    ...updates
+  };
+}
 
 export interface SalaryCalculationResult {
   grossAnnual: number;
