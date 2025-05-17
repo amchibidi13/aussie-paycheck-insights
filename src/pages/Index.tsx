@@ -1,6 +1,7 @@
 
 import SalaryCalculator from "@/components/SalaryCalculator";
 import TaxYearManager from "@/components/TaxYearManager";
+import SalaryComparisonTable from "@/components/SalaryComparisonTable";
 
 const Index = () => {
   return (
@@ -9,6 +10,7 @@ const Index = () => {
         <TaxYearManager />
       </div>
       
+      <SalaryComparisonTable />
       <SalaryCalculator />
       
       <footer className="mt-12 pb-8 text-center text-gray-500 text-sm">
